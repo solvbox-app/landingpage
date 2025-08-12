@@ -42,28 +42,16 @@
             padding: 0 2rem;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-container:hover {
-            text-decoration: none;
-        }
-
-        .logo-image {
-            width: 32px;
-            height: 32px;
-        }
-
         .logo-text {
             font-size: 2rem;
             font-weight: bold;
             color: #FFFFFF;
             text-decoration: none;
             letter-spacing: -0.02em;
+        }
+
+        .logo-text:hover {
+            text-decoration: none;
         }
 
         /* Main Content */
@@ -573,10 +561,7 @@
     <!-- Navigation - Only Logo -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo-container" onclick="showPage('home')">
-                <img src="MeinReactNativeApp/assets/solvbox-logo-white.svg" alt="Solvbox Logo" class="logo-image">
-                <span class="logo-text">Solvbox</span>
-            </a>
+            <a href="#" class="logo-text" onclick="showPage('home')">Solvbox</a>
         </div>
     </nav>
 
