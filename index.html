@@ -16,18 +16,19 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #fff;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+            min-height: 100vh;
         }
 
-        /* Navigation */
+        /* Header - Only Logo */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #333333;
             z-index: 1000;
             padding: 1rem 0;
         }
@@ -36,41 +37,28 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 2rem;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .nav-links {
+        .logo-container {
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            items-center: center;
+            gap: 12px;
         }
 
-        .nav-links a {
+        .logo-image {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFFFFF;
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+            letter-spacing: -0.02em;
         }
 
         /* Main Content */
@@ -88,57 +76,87 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
             color: white;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 194, 166, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .hero-container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: bold;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: #9CA3AF;
+            line-height: 1.5;
         }
 
         .cta-button {
             display: inline-block;
-            background: #fff;
-            color: #667eea;
-            padding: 1rem 2rem;
-            border-radius: 50px;
+            background: #00C2A6;
+            color: #0F0F0F;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             margin: 0.5rem;
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
+            background: #00A693;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 194, 166, 0.3);
         }
 
         .cta-button.secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: #00C2A6;
+            border: 2px solid #00C2A6;
+        }
+
+        .cta-button.secondary:hover {
+            background: #00C2A6;
+            color: #0F0F0F;
         }
 
         /* Content Sections */
         .content-section {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
+        }
+
+        .content-section:nth-child(even) {
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
         }
 
         .container {
@@ -152,80 +170,128 @@
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            font-weight: bold;
+            letter-spacing: -0.02em;
         }
 
         .section-header p {
-            font-size: 1.2rem;
-            color: #6b7280;
-            max-width: 600px;
+            font-size: 1.3rem;
+            color: #9CA3AF;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 3rem;
             margin-top: 4rem;
         }
 
         .feature-card {
             text-align: center;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #333333;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 194, 166, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            border-color: #00C2A6;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card p {
-            color: #6b7280;
-            line-height: 1.6;
+            color: #9CA3AF;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
         }
 
         /* CTA Section */
         .cta-section {
-            background: #f8fafc;
-            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+            padding: 6rem 2rem;
             text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 194, 166, 0.15) 0%, transparent 70%);
         }
 
         .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-section p {
-            font-size: 1.2rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-            max-width: 600px;
+            font-size: 1.3rem;
+            color: #9CA3AF;
+            margin-bottom: 3rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            z-index: 2;
         }
 
         /* Footer */
         .footer {
-            background: #1f2937;
+            background: #0F0F0F;
             color: white;
-            padding: 3rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid #333333;
         }
 
         .footer-container {
@@ -236,13 +302,15 @@
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #f9fafb;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            font-size: 1.3rem;
+            font-weight: bold;
         }
 
         .footer-section ul {
@@ -250,121 +318,161 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .footer-section ul li a {
-            color: #d1d5db;
+            color: #9CA3AF;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 1.1rem;
         }
 
         .footer-section ul li a:hover {
-            color: #60a5fa;
+            color: #00C2A6;
         }
 
         .footer-bottom {
-            border-top: 1px solid #374151;
+            border-top: 1px solid #333333;
             padding-top: 2rem;
             text-align: center;
-            color: #9ca3af;
+            color: #9CA3AF;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
         }
 
         /* Page Styles */
         .page-content {
-            padding: 2rem;
+            padding: 4rem 2rem;
             max-width: 800px;
-            margin: 2rem auto;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+            min-height: calc(100vh - 160px);
         }
 
         .page-content h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 2rem;
-            color: #1f2937;
+            color: #FFFFFF;
+            font-weight: bold;
         }
 
         .page-content h2 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            color: #374151;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: #00C2A6;
+            font-weight: bold;
         }
 
         .page-content p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #9CA3AF;
+            font-size: 1.1rem;
+        }
+
+        .page-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .page-content ul li {
+            margin-bottom: 0.5rem;
+            color: #9CA3AF;
             line-height: 1.7;
-            color: #4b5563;
         }
 
         /* Contact Form */
         .contact-form {
             max-width: 600px;
-            margin: 2rem auto;
+            margin: 3rem auto;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #333333;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #374151;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            font-size: 1.1rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #333333;
+            border-radius: 12px;
             font-size: 1rem;
+            background: #1A1A1A;
+            color: #FFFFFF;
             transition: border-color 0.3s;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #2563eb;
+            border-color: #00C2A6;
         }
 
         .form-group textarea {
-            height: 120px;
+            height: 150px;
             resize: vertical;
         }
 
         .submit-btn {
-            background: #2563eb;
-            color: white;
-            padding: 0.75rem 2rem;
+            background: #00C2A6;
+            color: #0F0F0F;
+            padding: 1rem 2.5rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .submit-btn:hover {
-            background: #1d4ed8;
+            background: #00A693;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 20px;
+            border: 1px solid #333333;
+        }
+
+        .contact-info h2 {
+            color: #FFFFFF;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info p {
+            color: #9CA3AF;
+            margin-bottom: 1rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .nav-container {
@@ -372,7 +480,7 @@
             }
 
             .content-section {
-                padding: 3rem 1rem;
+                padding: 4rem 1rem;
             }
 
             .features-grid {
@@ -381,11 +489,24 @@
             }
 
             .section-header h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .cta-section h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+
+            .page-content {
+                padding: 3rem 1rem;
+            }
+
+            .page-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-form {
+                margin: 2rem 1rem;
+                padding: 2rem;
             }
         }
 
@@ -397,55 +518,63 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
         }
 
         .coming-soon-content {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
+            padding: 4rem;
+            border-radius: 20px;
             text-align: center;
-            max-width: 400px;
+            max-width: 500px;
             margin: 2rem;
+            border: 1px solid #333333;
         }
 
         .coming-soon-content h2 {
-            margin-bottom: 1rem;
-            color: #1f2937;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            font-size: 2rem;
         }
 
         .coming-soon-content p {
-            margin-bottom: 2rem;
-            color: #6b7280;
+            margin-bottom: 2.5rem;
+            color: #9CA3AF;
+            line-height: 1.6;
         }
 
         .close-btn {
-            background: #2563eb;
-            color: white;
-            padding: 0.75rem 1.5rem;
+            background: #00C2A6;
+            color: #0F0F0F;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #00A693;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation - Only Logo -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo" onclick="showPage('home')">Solvbox</a>
-            <ul class="nav-links">
-                <li><a href="#" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" onclick="showPage('terms')">Terms</a></li>
-                <li><a href="#" onclick="showPage('privacy')">Privacy</a></li>
-                <li><a href="#" onclick="showPage('refund')">Refund</a></li>
-                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-            </ul>
-            <button class="mobile-menu">☰</button>
+            <a href="#" class="logo-container" onclick="showPage('home')">
+                <svg class="logo-image" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#00C2A6"/>
+                    <path d="M8 12h16v2H8v-2zm0 4h16v2H8v-2zm0 4h12v2H8v-2z" fill="#0F0F0F"/>
+                </svg>
+                <span class="logo-text">Solvbox</span>
+            </a>
         </div>
     </nav>
 
@@ -491,7 +620,7 @@
             </section>
 
             <!-- How It Works -->
-            <section class="content-section" style="background: #f8fafc;">
+            <section class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>How Solvbox Works</h2>
@@ -672,7 +801,7 @@
                     </form>
                 </div>
                 
-                <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: #f8fafc; border-radius: 10px;">
+                <div class="contact-info">
                     <h2>Get in Touch</h2>
                     <p><strong>Email:</strong> info@solvbox.com</p>
                     <p><strong>Business Hours:</strong> Monday - Friday, 9 AM - 6 PM MST</p>
@@ -682,13 +811,21 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with Navigation -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Solvbox</h3>
-                    <p>Connecting entrepreneurs with proven business solutions from practice.</p>
+                    <p>Connecting entrepreneurs with proven business solutions from practice. Real solutions, real success.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                        <li><a href="mailto:info@solvbox.com">info@solvbox.com</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Legal</h3>
@@ -701,8 +838,9 @@
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
-                        <li><a href="mailto:info@solvbox.com">info@solvbox.com</a></li>
+                        <li><a href="#" onclick="showComingSoon()">Get Started</a></li>
+                        <li><a href="#learn-more">Learn More</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Support Center</a></li>
                     </ul>
                 </div>
             </div>
