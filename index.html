@@ -1,76 +1,783 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solvbox</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solvbox - Real Solutions. Real Success.</title>
+    <meta name="description" content="Solvbox connects entrepreneurs with proven business solutions from practice. No theory - only what really works.">
+    
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #ffffff;
-        color: #111111;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
-        padding: 2rem;
-      }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
 
-      .logo {
-        font-size: 48px;
-        margin-bottom: 1.5rem;
-      }
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
 
-      h1 {
-        font-size: 28px;
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-      p {
-        font-size: 16px;
-        margin-bottom: 0.75rem;
-        max-width: 600px;
-      }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
 
-      a {
-        color: #111;
-        text-decoration: none;
-        font-weight: 500;
-      }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-      a:hover {
-        text-decoration: underline;
-      }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-      .footer {
-        margin-top: 2rem;
-        font-size: 14px;
-        color: #666;
-      }
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #f8fafc;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f9fafb;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Page Styles */
+        .page-content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .page-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .page-content h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #374151;
+        }
+
+        .page-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .content-section {
+                padding: 3rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Coming Soon Overlay */
+        .coming-soon-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coming-soon-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            margin: 2rem;
+        }
+
+        .coming-soon-content h2 {
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .coming-soon-content p {
+            margin-bottom: 2rem;
+            color: #6b7280;
+        }
+
+        .close-btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
     </style>
-  </head>
-  <body>
-    <div class="logo">🌐</div>
-    <h1>Welcome to Solvbox</h1>
-    <p>This domain is owned and operated by <strong>Solvbox LLC</strong>.</p>
-    <p>The Solvbox platform is currently under development.</p>
-    <p>
-      For business inquiries, please contact us at
-      <a href="mailto:info@solvbox.com">info@solvbox.com</a>.
-    </p>
-    <div class="footer">© 2025 Solvbox LLC</div>
-  </body>
-</html>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">Solvbox</a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('terms')">Terms</a></li>
+                <li><a href="#" onclick="showPage('privacy')">Privacy</a></li>
+                <li><a href="#" onclick="showPage('refund')">Refund</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="home" class="page-section active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-container">
+                    <h1>Real Solutions. Real Success.</h1>
+                    <p>Connect with proven business solutions from practice. No theory - only what really works.</p>
+                    <a href="#" class="cta-button" onclick="showComingSoon()">Get Started</a>
+                    <a href="#learn-more" class="cta-button secondary">Learn More</a>
+                </div>
+            </section>
+
+            <!-- Mission Section -->
+            <section id="learn-more" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Our Mission</h2>
+                        <p>Entrepreneurs know best what works for their business. They need direct access to proven solutions - presented clearly and honestly.</p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Proven Solutions</h3>
+                            <p>We collect real success stories from real entrepreneurs. No polished marketing cases, but what actually worked - with all the important details.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Direct Access</h3>
+                            <p>Skip the sales pitches and marketing phrases. Get direct access to solutions that match your specific business challenges.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h3>Real Community</h3>
+                            <p>Connect with practitioners who exchange ideas - from tax optimization to process automation. Real cases from real companies.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section class="content-section" style="background: #f8fafc;">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>How Solvbox Works</h2>
+                        <p>Discover proven business solutions through concrete case studies from successful entrepreneurs.</p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Browse Case Studies</h3>
+                            <p>Swipe through real business solutions across categories like taxes, marketing, automation, and more. Each case shows concrete results and implementation details.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💡</div>
+                            <h3>Save What Fits</h3>
+                            <p>Found something interesting? Save it to your Solvbox. Decide within seconds: "This fits my business!" or "Not for me" - no sales pressure.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3>Connect & Implement</h3>
+                            <p>Connect directly with the experts behind successful solutions. Get the details you need to implement proven strategies in your business.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2>Ready to Find Your Next Business Solution?</h2>
+                    <p>Join entrepreneurs who prefer learning from successful examples rather than studying theoretical concepts.</p>
+                    <a href="#" class="cta-button" onclick="showComingSoon()">Start Now - Coming Soon</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Terms of Service Page -->
+        <div id="terms" class="page-section">
+            <div class="page-content">
+                <h1>Terms of Service</h1>
+                <p><strong>Last updated:</strong> January 2025</p>
+                
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using Solvbox services, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                
+                <h2>2. Service Description</h2>
+                <p>Solvbox is a platform that connects entrepreneurs with proven business solutions through case studies and expert connections. We provide access to real-world business strategies and implementations.</p>
+                
+                <h2>3. User Responsibilities</h2>
+                <p>Users are responsible for maintaining the confidentiality of their account information and for all activities that occur under their account. You agree to use the service only for lawful purposes.</p>
+                
+                <h2>4. Payment Terms</h2>
+                <p>Subscription fees are processed securely through our payment partner Paddle. All payments are subject to Paddle's terms and conditions. Fees are non-refundable except as specified in our Refund Policy.</p>
+                
+                <h2>5. Intellectual Property</h2>
+                <p>The content, features, and functionality of Solvbox are owned by Solvbox LLC and are protected by international copyright, trademark, and other intellectual property laws.</p>
+                
+                <h2>6. Limitation of Liability</h2>
+                <p>Solvbox LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service.</p>
+                
+                <h2>7. Termination</h2>
+                <p>We reserve the right to terminate or suspend your account at any time for violations of these terms or for any other reason at our sole discretion.</p>
+                
+                <h2>8. Governing Law</h2>
+                <p>These terms shall be governed by and construed in accordance with the laws of New Mexico, USA.</p>
+                
+                <p><strong>Contact:</strong> For questions about these Terms of Service, please contact us at info@solvbox.com</p>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Page -->
+        <div id="privacy" class="page-section">
+            <div class="page-content">
+                <h1>Privacy Policy</h1>
+                <p><strong>Last updated:</strong> January 2025</p>
+                
+                <h2>1. Information We Collect</h2>
+                <p>We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support. This may include your name, email address, and usage data.</p>
+                
+                <h2>2. How We Use Your Information</h2>
+                <p>We use the information we collect to provide, maintain, and improve our services, process transactions, send communications, and ensure security.</p>
+                
+                <h2>3. Information Sharing</h2>
+                <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy or as required by law.</p>
+                
+                <h2>4. Payment Processing</h2>
+                <p>Payment information is processed securely by Paddle, our payment processor. We do not store your payment card information on our servers. Paddle's privacy policy governs the collection and use of payment information.</p>
+                
+                <h2>5. Data Security</h2>
+                <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                
+                <h2>6. Data Retention</h2>
+                <p>We retain your information for as long as necessary to provide our services and fulfill the purposes outlined in this policy, unless a longer retention period is required by law.</p>
+                
+                <h2>7. Your Rights</h2>
+                <p>You have the right to access, update, or delete your personal information. You may also opt out of certain communications from us.</p>
+                
+                <h2>8. International Data Transfers</h2>
+                <p>Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers.</p>
+                
+                <h2>9. Changes to This Policy</h2>
+                <p>We may update this privacy policy from time to time. We will notify you of any material changes by posting the new policy on our website.</p>
+                
+                <p><strong>Contact:</strong> For questions about this Privacy Policy, please contact us at info@solvbox.com</p>
+            </div>
+        </div>
+
+        <!-- Refund Policy Page -->
+        <div id="refund" class="page-section">
+            <div class="page-content">
+                <h1>Refund Policy</h1>
+                <p><strong>Last updated:</strong> January 2025</p>
+                
+                <h2>1. Refund Eligibility</h2>
+                <p>We offer a 14-day money-back guarantee for all Solvbox subscriptions. You may request a full refund within 14 days of your initial purchase if you have not actively used the service.</p>
+                
+                <h2>2. What Constitutes "Active Use"</h2>
+                <p>Active use includes:</p>
+                <ul>
+                    <li>Saving more than 5 case studies to your Solvbox</li>
+                    <li>Contacting experts through our platform</li>
+                    <li>Downloading or accessing premium content</li>
+                    <li>Using the service for more than 7 consecutive days</li>
+                </ul>
+                
+                <h2>3. How to Request a Refund</h2>
+                <p>To request a refund, please contact our support team at info@solvbox.com within the 14-day window. Include your account email and reason for the refund request.</p>
+                
+                <h2>4. Processing Time</h2>
+                <p>Approved refunds will be processed within 5-10 business days and will appear on your original payment method. Processing times may vary depending on your bank or payment provider.</p>
+                
+                <h2>5. Subscription Cancellation</h2>
+                <p>You may cancel your subscription at any time through your account settings. Cancellation will prevent future charges but will not result in a refund for the current billing period unless eligible under this policy.</p>
+                
+                <h2>6. Exceptions</h2>
+                <p>Refunds are not available for:</p>
+                <ul>
+                    <li>Accounts terminated for violation of our Terms of Service</li>
+                    <li>Requests made after the 14-day period</li>
+                    <li>Accounts that have actively used the service as defined above</li>
+                </ul>
+                
+                <h2>7. Payment Processor</h2>
+                <p>All payments are processed through Paddle. In case of payment disputes, you may also contact Paddle directly through their support channels.</p>
+                
+                <p><strong>Contact:</strong> For refund requests or questions, please email us at info@solvbox.com</p>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page-section">
+            <div class="page-content">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                
+                <div class="contact-form">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: #f8fafc; border-radius: 10px;">
+                    <h2>Get in Touch</h2>
+                    <p><strong>Email:</strong> info@solvbox.com</p>
+                    <p><strong>Business Hours:</strong> Monday - Friday, 9 AM - 6 PM MST</p>
+                    <p><strong>Response Time:</strong> We typically respond within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Solvbox</h3>
+                    <p>Connecting entrepreneurs with proven business solutions from practice.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('terms')">Terms of Service</a></li>
+                        <li><a href="#" onclick="showPage('privacy')">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showPage('refund')">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+                        <li><a href="mailto:info@solvbox.com">info@solvbox.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Solvbox LLC, New Mexico, USA. All rights reserved.</p>
+                <p>Payments are processed securely via Paddle.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Coming Soon Overlay -->
+    <div id="comingSoonOverlay" class="coming-soon-overlay">
+        <div class="coming-soon-content">
+            <h2>Coming Soon!</h2>
+            <p>Solvbox is launching soon. We're putting the finishing touches on connecting entrepreneurs with proven business solutions.</p>
+            <button class="close-btn" onclick="hideComingSoon()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Coming Soon Modal
+        function showComingSoon() {
+            document.getElementById('comingSoonOverlay').style.display = 'flex';
+        }
+
+        function hideComingSoon() {
+            document.getElementById('comingSoonOverlay').style.display = 'none';
+        }
+
+        // Contact Form Handler
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('comingSoonOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideComingSoon();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#') && href !== '#') {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
